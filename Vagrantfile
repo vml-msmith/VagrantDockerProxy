@@ -12,6 +12,8 @@ curl -SLo "jet-1.1.0.tar.gz" "https://s3.amazonaws.com/codeship-jet-releases/1.1
 sudo tar -xaC /usr/local/bin -f jet-1.1.0.tar.gz
 sudo chmod +x /usr/local/bin/jet
 
+cp -r /opt/ssh/* /home/vagrant/.ssh/
+
 SCRIPT
 
 Vagrant.configure(2) do |config|
@@ -38,18 +40,14 @@ Vagrant.configure(2) do |config|
   # Docker files.
   #  config.vm.synced_folder './provision/', '/opt/provision', opts
 
+  config.vm.synced_folder "~/.ssh", "/opt/ssh"
+
   # Vagrant provider configuration.
   config.vm.provider :virtualbox do |v|
     v.customize ['modifyvm', :id, '--memory', memory]
     v.cpus = cpus
     v.name = hostname
   end
-
-  #config.vm.provider :vmware_fusion do |v|
-  #  v.vmx['memsize'] = memory
-  #  v.vmx['numvcpus'] = cpus
-  #  v.vmx['displayName'] = hostname
-  #end
 
   config.vm.provision "docker" do |d|
     d.pull_images "jwilder/nginx-proxy"
