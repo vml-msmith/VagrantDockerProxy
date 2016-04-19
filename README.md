@@ -1,4 +1,5 @@
-Install vagrant-auto_network```vagrant plugin install vagrant-auto_network```Bring up Vagrant```vagrant up```Clone base repo into sites```git clone ssh://git@stash.vmlapps.com/~msmith/d8dockerbase.git Sites/dev.something.com```Edit the Provision data for your new site to give it a URL..
+Install vagrant-auto_network
+```vagrant plugin install vagrant-auto_network```Bring up Vagrant```vagrant up```Clone base repo into sites```git clone ssh://git@stash.vmlapps.com/~msmith/d8dockerbase.git Sites/dev.something.com```Edit the Provision data for your new site to give it a URL..
 ```vim Sites/dev.something.com/provision/codeship-services.yml```
 
 Just change the 'dev.something.com' to whatever your site is.
