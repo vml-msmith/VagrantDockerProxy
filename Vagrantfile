@@ -8,8 +8,8 @@ $script = <<SCRIPT
 echo I am provisioning...
 date > /etc/vagrant_provisioned_at
 
-curl -SLo "jet-1.1.0.tar.gz" "https://s3.amazonaws.com/codeship-jet-releases/1.1.0/jet-linux_amd64_1.1.0.tar.gz"
-sudo tar -xaC /usr/local/bin -f jet-1.1.0.tar.gz
+curl -SLo "jet-1.4.0.tar.gz" "https://s3.amazonaws.com/codeship-jet-releases/1.4.0/jet-linux_amd64_1.4.0.tar.gz"
+sudo tar -xaC /usr/local/bin -f jet-1.4.0.tar.gz
 sudo chmod +x /usr/local/bin/jet
 
 cp -r /opt/ssh/* /home/vagrant/.ssh/
@@ -18,6 +18,7 @@ SCRIPT
 
 Vagrant.configure(2) do |config|
   config.vm.box = 'ubuntu/trusty64'
+  #config.vm.box = 'hashicorp/precise64'
   # Networking
   config.vm.hostname = hostname
   config.vm.network :private_network,
@@ -27,7 +28,7 @@ Vagrant.configure(2) do |config|
   # Synced folders.
   opts = {
     create: true,
-    type: 'rsync',
+    type: 'nfs',
     rsync__exclude: ['.idea/', '.git/'],
     rsync__args: ['--verbose', '--archive', '--delete', '-z']
   }
