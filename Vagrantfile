@@ -40,7 +40,7 @@ Vagrant.configure(2) do |config|
   # Disable default synced folder.
   config.vm.synced_folder '.', '/vagrant', disabled: true
   # Project/site files.
-  config.vm.synced_folder 'Sites', '/opt/sites', opts
+  config.vm.synced_folder 'sites', '/opt/sites', opts
   config.vm.synced_folder 'bin', '/opt/bin', opts
   # Docker files.
   #  config.vm.synced_folder './provision/', '/opt/provision', opts
