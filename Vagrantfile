@@ -14,6 +14,10 @@ sudo chmod +x /usr/local/bin/jet
 
 cp -r /opt/ssh/* /home/vagrant/.ssh/
 
+curl -L https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+
 SCRIPT
 
 Vagrant.configure(2) do |config|
@@ -53,7 +57,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "docker" do |d|
     d.pull_images "jwilder/nginx-proxy"
     d.run "jwilder/nginx-proxy",
-          args: "-p 80:80 -v /var/run/docker.sock:/tmp/docker.sock -t",
+          args: "-p 80:80 -p 443:443 -v /var/run/docker.sock:/tmp/docker.sock -t",
           daemonize: true
   end
 
