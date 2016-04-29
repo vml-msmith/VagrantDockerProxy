@@ -42,10 +42,6 @@ Vagrant.configure(2) do |config|
   # Project/site files.
   config.vm.synced_folder 'sites', '/opt/sites', opts
   config.vm.synced_folder 'bin', '/opt/bin', opts
-  # Docker files.
-  #  config.vm.synced_folder './provision/', '/opt/provision', opts
-
-  config.vm.synced_folder "~/.ssh", "/opt/ssh"
 
   # Vagrant provider configuration.
   config.vm.provider :virtualbox do |v|
