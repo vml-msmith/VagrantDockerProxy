@@ -1,0 +1,27 @@
+# docker-compose.yml
+
+wapp:
+  build: .
+  dockerfile: Dockerfile
+  environment:
+    VIRTUAL_HOST: dev.cpt.com
+    PHP_OPCACHE: enabled
+  volumes:
+    - ".:/var/www"
+  links:
+    - wmysql
+  ports:
+    - "80"
+    - "443"
+    - "22"
+
+wmysql:
+  image: mysql:5.5
+  #volumes:
+  #u  - provision/mysql:/etc/mysql/conf.d
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: drupal
+    VIRTUAL_PORT: 3306
+  ports:
+    - "3306"
