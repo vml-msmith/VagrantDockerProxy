@@ -1,10 +1,10 @@
 # docker-compose.yml
 
-wapp:
+devd8:
   build: .
   dockerfile: Dockerfile
   environment:
-    VIRTUAL_HOST: dev.cpt.com
+    VIRTUAL_HOST: dev.d8.com
     PHP_OPCACHE: enabled
   volumes:
     - ".:/var/www"
@@ -15,10 +15,8 @@ wapp:
     - "443"
     - "22"
 
-wmysql:
+d8mysql:
   image: mysql:5.5
-  #volumes:
-  #u  - provision/mysql:/etc/mysql/conf.d
   environment:
     MYSQL_ROOT_PASSWORD: root
     MYSQL_DATABASE: drupal
